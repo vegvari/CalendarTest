@@ -12,6 +12,7 @@ use Carbon\Carbon;
 		{
 //			echo "hello";
 //				Parent::__construct(DateTimeInterface $datetime)
+			$this->today = Carbon::today();
 		}
 
 		/**
@@ -21,9 +22,7 @@ use Carbon\Carbon;
 		 */
 		public function getDay()
 		{
-			// $today = Carbon::now()->format('l');
-			$today = Carbon::today()->format('l');
-			return $today;
+			 return $this->today->format('l');
 		}
 
 		/**
@@ -33,8 +32,7 @@ use Carbon\Carbon;
 		 */
 		public function getWeekDay()
 		{
-			$day_num = Carbon::today()->format('N');
-			return $day_num;
+			return $this->today->format('N');
 		}
 
 		/**
@@ -44,6 +42,9 @@ use Carbon\Carbon;
 		 */
 		public function getFirstWeekDay()
 		{
+//			$first_day = Carbon::today()->subMonth(1)->daysInMonth;
+//			return $first_day;
+				return $this->today->firstOfMonth()->format('N');
 
 		}
 
@@ -54,8 +55,7 @@ use Carbon\Carbon;
 		 */
 		public function getFirstWeek()
 		{
-			$today = Carbon::today();
-			return $today->weekOfMonth;
+			return $this->today->firstOfMonth()->weekOfYear;
 		}
 
 		/**
@@ -66,6 +66,7 @@ use Carbon\Carbon;
 		public function getNumberOfDaysInThisMonth()
 		{
 
+			return $this->today->daysInMonth;
 		}
 
 		/**
@@ -75,7 +76,7 @@ use Carbon\Carbon;
 		 */
 		public function getNumberOfDaysInPreviousMonth()
 		{
-
+			return $this->today->subMonth()->daysInMonth;
 		}
 
 		/**
@@ -85,6 +86,44 @@ use Carbon\Carbon;
 		 */
 		public function getCalendar()
 		{
+			// I'm not sure if this is useful as the Carbon library is loaded when this class is instantiated and I'm
+			// performing my operations on those.
+			return $this->today;
+
+
+			
+			
+		}
+
+
+		public function getCalendarArray()
+		{
+			// I'm not sure if this is useful as the Carbon library is loaded when this class is instantiated and I'm
+			// performing my operations on those.
+
+//			$calendar = array();
+			$i=1;
+			$current_date = $this->today->startOfYear()->format('d/m/Y');
+			$calendar[] = $current_date;
+			while ($i <= 365)
+			{
+				$calendar[] = 	$this->today->addDay()->format('d/m/Y');
+
+				$i++;
+			}
+
+//			var_dump($calendar);
+
+//			$current_date = $this->today->startOfYear();
+//			while ($current_date !== $this->today->endOfYear())
+//			{
+//				$calendar[]= $current_date->format('d/m/Y');
+//				$current_date->addDay();
+//			}
+//
+			return $calendar;
 
 		}
+
+
 	}
