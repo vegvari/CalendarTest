@@ -3,9 +3,9 @@
 namespace Calendar;
 
 use DateTime;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class CalendarTest extends PHPUnit_Framework_TestCase
+class CalendarTest extends TestCase
 {
     public function setUp()
     {
@@ -28,7 +28,7 @@ class CalendarTest extends PHPUnit_Framework_TestCase
      * @param array  $result
      */
     public function testCalendar($date, $day, $weekday, $first_weekday, $number_of_days, $number_of_days_prev, array $result)
-    {
+    {        
         $calendar = new Calendar(new DateTime($date));
 
         $this->assertSame($day, $calendar->getDay());
