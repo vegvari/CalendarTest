@@ -1,5 +1,9 @@
 Fork this repo and write a Calendar class which implements the CalendarInterface and pass all the unit tests.
 
+To install dependencies:
+ - [Install composer](https://getcomposer.org/doc/00-intro.md)
+ - In project root directory run `composer install`
+ 
 The Calendar class should accept any DateTimeInterface implementation and based on that you have to "draw" the current month and highlight the previous week. Instead of actually drawing it, the getCalendar method should just return an array.
 
 For example if today is 9th March 2016, the array is:
@@ -23,3 +27,10 @@ If the day is in the first week, like 6th March 2016, the array is:
 12 => [21 => false, 22 => false, 23 => false, 24 => false, 25 => false, 26 => false, 27 => false, ],
 13 => [28 => false, 29 => false, 30 => false, 31 => false, 1  => false, 2  => false, 3  => false, ],
 ```
+
+To run the unit tests run the following:
+`vendor/bin/phpunit`
+
+Note:
+In a production environment the composer install would look something like the following:
+`composer install --no-interaction --quiet --prefer-dist --optimize-autoloader --no-plugins --no-dev`
