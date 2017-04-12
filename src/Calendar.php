@@ -120,7 +120,8 @@ class Calendar implements CalendarInterface
      * @param $weekDate
      * @return array
      */
-    private function getDaysInWeek($weekNum, $weekDate) {
+    private function getDaysInWeek($weekNum, $weekDate): array
+    {
         $currentWeek = (int)$this->date->format('W');
         $interval = new \DateInterval('P1D');
         $period = new \DatePeriod($weekDate, $interval, 6);
@@ -142,7 +143,8 @@ class Calendar implements CalendarInterface
      *
      * @return int
      */
-    private function getNumWeeksCurrentMonth(): int {
+    private function getNumWeeksCurrentMonth(): int
+    {
         $firstWeek = $this->getFirstWeek();
         $lastWeek = $this->getLastWeek();
         $currentYear = (int)$this->date->format('Y');
@@ -160,7 +162,8 @@ class Calendar implements CalendarInterface
      *
      * @return string
      */
-    private function getLastWeek() {
+    private function getLastWeek(): string
+    {
         $tempDate = new \DateTime($this->date->format('Y-m-t'));
 
         return $tempDate->format('W');
